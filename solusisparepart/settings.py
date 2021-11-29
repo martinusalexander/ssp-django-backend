@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'account',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -79,9 +80,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'solusisparepart',
         'USER': 'root',
-        'PASSWORD': '',
+        'PASSWORD': 'rootpass',
         'HOST': '127.0.0.1',
-        'PORT': '3306',
+        'PORT': '3307',
     }
 }
 
@@ -134,3 +135,10 @@ AUTH_USER_MODEL = 'account.CustomUser'
 
 # Custom authentication backend
 AUTHENTICATION_BACKENDS = ['account.backends.CustomBackend']
+
+# REST framework
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ]
+}

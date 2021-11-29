@@ -69,4 +69,12 @@ curl -H 'Accept: application/json; indent=4' -u myemail:mypassword http://127.0.
 ```
 Alternatively, you can use other tools like [Postman](https://www.postman.com/)
 
-
+You should see the API response in the following format
+```
+[
+    {
+        "full_name": "Myname",
+        "email": "myname@example.com"
+    }
+]
+```

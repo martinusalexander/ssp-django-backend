@@ -57,17 +57,38 @@ python manage.py runserver
 ```
 
 # Test the Django REST framework
-Create a superuser
+## Create a superuser
 ```
 python manage.py createsuperuser
 # Then please fill in the prompt
 ```
 
-Query the created user (one option can be `curl`)
+## Retrieve the JWT token
+One option can be `curl`. Alternatively, you can use other tools like [Postman](https://www.postman.com/)
 ```
-curl -H 'Accept: application/json; indent=4' -u myemail:mypassword http://127.0.0.1:8000/users/
+curl \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"username": "myemail", "password": "mypassword"}' \
+  http://localhost:8000/api/token/
 ```
-Alternatively, you can use other tools like [Postman](https://www.postman.com/)
+
+You should see the API response in the following format
+```
+{
+  "access":"anaccesstoken",
+  "refresh":"arefreshtoken"
+}
+```
+
+## Query the created user
+Don't forget to replace the access token with the token you retrieved earlier
+```
+curl \
+  -H "Authorization: Bearer anacesstoken" \
+  http://localhost:8000/users/
+```
+
 
 You should see the API response in the following format
 ```
@@ -77,4 +98,20 @@ You should see the API response in the following format
         "email": "myname@example.com"
     }
 ]
+```
+
+## Obtain another access token (after short-lived access token expires)
+Don't forget to replace the refresh token with the token you retrieved earlier
+```
+curl \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"refresh":"arefreshtoken"}' \
+  http://localhost:8000/api/token/refresh/
+```
+You should see the API response in the following format
+```
+{
+  "access":"anewaccesstoken"
+}
 ```

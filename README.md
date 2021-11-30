@@ -86,7 +86,7 @@ Don't forget to replace the access token with the token you retrieved earlier
 ```
 curl \
   -H "Authorization: Bearer anacesstoken" \
-  http://localhost:8000/users/
+  http://localhost:8000/api/users/
 ```
 
 

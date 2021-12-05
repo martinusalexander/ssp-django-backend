@@ -69,7 +69,7 @@ One option can be `curl`. Alternatively, you can use other tools like [Postman](
 curl \
   -X POST \
   -H "Content-Type: application/json" \
-  -d '{"username": "myemail", "password": "mypassword"}' \
+  -d '{"email": "myemail", "password": "mypassword"}' \
   http://localhost:8000/api/token/
 ```
 
